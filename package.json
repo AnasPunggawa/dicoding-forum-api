@@ -7,6 +7,7 @@
     "lint": "eslint",
     "start": "node src/app.js",
     "start:dev": "node --watch src/app.js",
+    "start:prod": "NODE_ENV=production node src/app.js",
     "test": "jest --setupFiles dotenv/config -i",
     "test:watch:change": "jest --watch --setupFiles dotenv/config -i",
     "test:watch": "jest --watchAll --coverage --setupFiles dotenv/config -i",

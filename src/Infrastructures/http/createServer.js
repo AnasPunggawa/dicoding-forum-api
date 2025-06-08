@@ -18,8 +18,11 @@ const comments = require('../../Interfaces/http/api/comments');
  */
 async function createServer(container) {
   const server = Hapi.server({
-    host: process.env.HOST,
-    port: process.env.PORT,
+    host:
+      String(process.env.NODE_ENV) === 'development'
+        ? String(process.env.HOST)
+        : '0.0.0.0',
+    port: Number(process.env.PORT),
     routes: {
       cors: {
         origin: ['*'],
