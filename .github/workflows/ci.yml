@@ -17,7 +17,6 @@ jobs:
       postgres:
         image: postgres
         env:
-          POSTGRES_HOST: localhost
           POSTGRES_USER: postgres
           POSTGRES_PASSWORD: root
           POSTGRES_DB: forumapi_test
@@ -36,29 +35,19 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node-version }}
-      # - name: installing package, migrate and test
-      #   run: |
-      #     npm install
-      #     npm run migrate:test up
-      #     npm run test
-      - name: installing package
+      - name: installing package, migrate and test
         run: |
           npm install
-      - name: wait for postgres to be ready
-        run: sleep 10
-      - name: run migrate and test
-        run: |
           npm run migrate:test up
-          npm run test
-        env:
+          npm run test        env:
           CI: true
           HOST: localhost
           PORT: 5000
-          PGHOST: localhost
-          PGPORT: 5432
-          PGUSER: postgres
-          PGPASSWORD: root
-          PGDATABASE: forumapi_test
-          ACCESS_TOKEN_KEY: secret
-          REFRESH_TOKEN_KEY: terces
+          PGHOST_TEST: localhost
+          PGPORT_TEST: 5432
+          PGUSER_TEST: postgres
+          PGPASSWORD_TEST: root
+          PGDATABASE_TEST: forumapi_test
+          ACCESS_TOKEN_KEY: super_secret_access_token_key
+          REFRESH_TOKEN_KEY: super_secret_refresh_token_key
           ACCESS_TOKEN_AGE: 3600

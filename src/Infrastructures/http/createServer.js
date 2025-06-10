@@ -17,14 +17,6 @@ const comments = require('../../Interfaces/http/api/comments');
  * @returns
  */
 async function createServer(container) {
-  // console.log({
-  //   NODE_ENV: process.env.NODE_ENV,
-  //   PGHOST: process.env.PGHOST,
-  //   PGPORT: process.env.PGPORT,
-  //   PGUSER: process.env.PGUSER,
-  //   PGDATABASE: process.env.PGDATABASE,
-  // });
-
   const server = Hapi.server({
     host:
       String(process.env.NODE_ENV) === 'production'

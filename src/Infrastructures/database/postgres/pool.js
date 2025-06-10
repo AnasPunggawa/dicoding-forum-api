@@ -11,8 +11,6 @@ const testConfig = {
   database: String(process.env.PGDATABASE_TEST),
 };
 
-console.log(testConfig);
-
 const pool =
   process.env.NODE_ENV === 'test' ? new Pool(testConfig) : new Pool();
 
