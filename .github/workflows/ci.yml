@@ -38,16 +38,29 @@ jobs:
       - name: installing package, migrate and test
         run: |
           npm install
-          npm run migrate:test up
-          npm run test        env:
+          npm run migrate up
+          npm run test
+        env:
           CI: true
+          # HTTP SERVER
           HOST: localhost
           PORT: 5000
+
+          # POSTGRES
+          PGHOST: localhost
+          PGPORT: 5432
+          PGUSER: postgres
+          PGPASSWORD: root
+          PGDATABASE: forumapi_test
+
+          # POSTGRES TEST
           PGHOST_TEST: localhost
           PGPORT_TEST: 5432
           PGUSER_TEST: postgres
           PGPASSWORD_TEST: root
           PGDATABASE_TEST: forumapi_test
+
+          # TOKENIZE
           ACCESS_TOKEN_KEY: super_secret_access_token_key
           REFRESH_TOKEN_KEY: super_secret_refresh_token_key
           ACCESS_TOKEN_AGE: 3600
