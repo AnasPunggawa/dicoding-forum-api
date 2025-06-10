@@ -9,11 +9,11 @@ exports.shorthands = undefined;
  * @returns {Promise<void> | void}
  */
 exports.up = (pgm) => {
-  pgm.createTable('like_comments', {
+  pgm.createTable('comment_likes', {
     comment_id: {
       type: 'VARCHAR(50)',
       notNull: true,
-      referencesConstraintName: 'like_comments_comment_id_fkey',
+      referencesConstraintName: 'comment_likes_comment_id_fkey',
       references: 'comments(id)',
       onUpdate: 'CASCADE',
       onDelete: 'CASCADE',
@@ -21,7 +21,7 @@ exports.up = (pgm) => {
     user_id: {
       type: 'VARCHAR(50)',
       notNull: true,
-      referencesConstraintName: 'like_comments_user_id_fkey',
+      referencesConstraintName: 'comment_likes_user_id_fkey',
       references: 'users(id)',
       onUpdate: 'CASCADE',
       onDelete: 'CASCADE',
@@ -29,8 +29,8 @@ exports.up = (pgm) => {
   });
 
   pgm.addConstraint(
-    'like_comments',
-    'like_comments_comment_id_user_id_key',
+    'comment_likes',
+    'comment_likes_comment_id_user_id_key',
     'UNIQUE(comment_id, user_id)'
   );
 };
@@ -41,6 +41,6 @@ exports.up = (pgm) => {
  * @returns {Promise<void> | void}
  */
 exports.down = (pgm) => {
-  pgm.dropConstraint('like_comments', 'like_comments_comment_id_user_id_key');
-  pgm.dropTable('like_comments');
+  pgm.dropConstraint('comment_likes', 'comment_likes_comment_id_user_id_key');
+  pgm.dropTable('comment_likes');
 };
