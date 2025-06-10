@@ -17,7 +17,6 @@ jobs:
       postgres:
         image: postgres
         env:
-          POSTGRES_HOST: localhost
           POSTGRES_USER: postgres
           POSTGRES_PASSWORD: root
           POSTGRES_DB: forumapi_test
