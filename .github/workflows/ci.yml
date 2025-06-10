@@ -35,20 +35,9 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node-version }}
-      # - name: npm install migrate and test
-      #   run: |
-      #     npm install
-      #     npm run migrate:test up
-      #     npm run test
-      - name: installing package
+      - name: installing package, migrate and test
         run: |
           npm install
-      - name: wait for Postgres to be ready
-        run: |
-          echo "waiting for PostgreSQL..."
-          sleep 10
-      - name: migrate and test
-        run: |
           npm run migrate:test up
           npm run test
         env:
