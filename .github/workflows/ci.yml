@@ -42,7 +42,7 @@ jobs:
           npm run test
         env:
           CI: true
-          HOST: localhost
+          HOST: postgres
           PORT: 5000
           PGHOST: localhost
           PGPORT: 5432
