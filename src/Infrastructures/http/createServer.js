@@ -18,6 +18,7 @@ const comments = require('../../Interfaces/http/api/comments');
  */
 async function createServer(container) {
   console.log({
+    NODE_ENV: process.env.NODE_ENV,
     PGHOST: process.env.PGHOST,
     PGPORT: process.env.PGPORT,
     PGUSER: process.env.PGUSER,
