@@ -2,11 +2,11 @@
 
 class CommentLikeRepository {
   /**
-   * @param {string} comment_id
-   * @param {string} user_id
+   * @param {string} userId
+   * @param {string} commentId
    * @throws {Error}
    */
-  async commentLikeToggle(comment_id, user_id) {
+  async toggleCommentLike(userId, commentId) {
     throw new Error('COMMENT_LIKE_REPOSITORY.METHOD_NOT_IMPLEMENTED');
   }
 }
