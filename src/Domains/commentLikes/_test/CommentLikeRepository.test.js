@@ -7,7 +7,7 @@ describe('CommentLikeRepository interface', () => {
 
     // Action & Assert
     await expect(
-      commentLikeRepository.commentLikeToggle('', '')
+      commentLikeRepository.toggleCommentLike('', '')
     ).rejects.toThrow('COMMENT_LIKE_REPOSITORY.METHOD_NOT_IMPLEMENTED');
   });
 });
