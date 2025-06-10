@@ -8,6 +8,6 @@ describe('CommentLikeRepository interface', () => {
     // Action & Assert
     await expect(
       commentLikeRepository.commentLikeToggle('', '')
-    ).rejects.toThrow('COMMENT_LIKES_REPOSITORY.METHOD_NOT_IMPLEMENTED');
+    ).rejects.toThrow('COMMENT_LIKE_REPOSITORY.METHOD_NOT_IMPLEMENTED');
   });
 });
