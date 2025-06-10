@@ -50,5 +50,5 @@ jobs:
           PGPASSWORD: postgres1357916
           PGDATABASE: forumapi_test
           ACCESS_TOKEN_KEY: secret
-          REFRESH_TOKEN_KEY: recset
+          REFRESH_TOKEN_KEY: terces
           ACCESS_TOKEN_AGE: 3600
