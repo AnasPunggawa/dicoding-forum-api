@@ -105,8 +105,6 @@ async function createServer(container) {
     return h.continue;
   });
 
-  console.log(server.info.uri);
-
   return server;
 }
 
