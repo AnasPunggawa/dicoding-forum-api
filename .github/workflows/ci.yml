@@ -18,13 +18,13 @@ jobs:
         image: postgres
         env:
           POSTGRES_USER: postgres
-          POSTGRES_PASSWORD: root
+          POSTGRES_PASSWORD: postgres1357916
           POSTGRES_DB: forumapi_test
 
         options: >-
           --health-cmd pg_isready
-          --health-interval 15s
-          --health-timeout 10s
+          --health-interval 10s
+          --health-timeout 5s
           --health-retries 5
         ports:
           - 5432:5432
@@ -38,7 +38,7 @@ jobs:
       - name: installing package, migrate and test
         run: |
           npm install
-          npm run migrate:test up
+          npm run migrate up
           npm run test
         env:
           CI: true
@@ -47,8 +47,8 @@ jobs:
           PGHOST: localhost
           PGPORT: 5432
           PGUSER: postgres
-          PGPASSWORD: root
+          PGPASSWORD: postgres1357916
           PGDATABASE: forumapi_test
-          ACCESS_TOKEN_KEY: secret_access_token
-          REFRESH_TOKEN_KEY: secret_refresh_token
+          ACCESS_TOKEN_KEY: secret
+          REFRESH_TOKEN_KEY: recset
           ACCESS_TOKEN_AGE: 3600
