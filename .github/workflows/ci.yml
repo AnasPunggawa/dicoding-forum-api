@@ -40,20 +40,15 @@ jobs:
       #     npm install
       #     npm run migrate:test up
       #     npm run test
-      - name: npm install
+      - name: installing package
         run: |
-<<<<<<< HEAD
           npm install
-=======
-          npm run migrate:test up
-          npm run test
       - name: wait for Postgres to be ready
         run: |
           echo "waiting for PostgreSQL..."
           sleep 10
       - name: migrate and test
         run: |
->>>>>>> 978ed3a22539a515730f9e4fda5e429c62bb7acc
           npm run migrate:test up
           npm run test
         env:
