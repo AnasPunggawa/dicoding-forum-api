@@ -48,7 +48,7 @@ jobs:
         run: |
           echo "waiting for PostgreSQL..."
           sleep 10
-      - name: migrate
+      - name: migrate and test
         run: |
           npm run migrate:test up
           npm run test
