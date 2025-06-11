@@ -22,6 +22,7 @@ describe('ThreadComment entity', () => {
       username: [],
       date: {},
       content: false,
+      likeCount: 'liked',
       isDeleted: 'telah dihapus',
     };
 
@@ -39,6 +40,7 @@ describe('ThreadComment entity', () => {
       username: 'dicoding',
       date: new Date().toISOString(),
       content: 'thread comment',
+      likeCount: 0,
       isDeleted: false,
     };
 
@@ -50,6 +52,7 @@ describe('ThreadComment entity', () => {
     expect(threadComment.username).toEqual(payload.username);
     expect(threadComment.date).toEqual(payload.date);
     expect(threadComment.content).toEqual(payload.content);
+    expect(threadComment.likeCount).toEqual(payload.likeCount);
   });
 
   it('should create ThreadComment entity correctly if the comment is deleted', () => {
@@ -59,6 +62,7 @@ describe('ThreadComment entity', () => {
       username: 'dicoding',
       date: new Date().toISOString(),
       content: 'thread comment',
+      likeCount: 0,
       isDeleted: true,
     };
 
@@ -70,5 +74,6 @@ describe('ThreadComment entity', () => {
     expect(threadComment.username).toEqual(payload.username);
     expect(threadComment.date).toEqual(payload.date);
     expect(threadComment.content).toEqual('**komentar telah dihapus**');
+    expect(threadComment.likeCount).toEqual(payload.likeCount);
   });
 });

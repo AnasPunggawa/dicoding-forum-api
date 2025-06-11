@@ -80,13 +80,26 @@ class CommentRepositoryPostgres extends CommentRepository {
     const query = {
       text: `
         SELECT
-          c.id, u.username, c.date, c.content, c.is_deleted as "isDeleted"
+          c.id,
+          u.username,
+          c.date,
+          c.content,
+          COUNT(cl.comment_id) AS "likeCount",
+          c.is_deleted as "isDeleted"
         FROM
           comments AS c
         INNER JOIN
           users AS u ON c.owner = u.id
+        LEFT JOIN
+          comment_likes AS cl ON c.id = cl.comment_id
         WHERE
           c.thread_id = $1
+        GROUP BY
+          c.id,
+          u.username,
+          c.date,
+          c.content,
+          c.is_deleted
         ORDER BY
           c.date ASC;
       `,
@@ -100,6 +113,7 @@ class CommentRepositoryPostgres extends CommentRepository {
         new ThreadComment({
           ...comment,
           date: comment.date.toISOString(),
+          likeCount: Number(comment.likeCount),
         })
     );
   }

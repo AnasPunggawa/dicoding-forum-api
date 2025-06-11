@@ -23,6 +23,7 @@
  * @property {string} username
  * @property {string} date
  * @property {string} content
+ * @property {number} likeCount
  * @property {boolean} isDeleted
  */
 
@@ -32,6 +33,7 @@
  * @property {string} username
  * @property {string} date
  * @property {string} content
+ * @property {number} likeCount
  */
 
 /**

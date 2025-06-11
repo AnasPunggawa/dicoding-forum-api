@@ -32,7 +32,7 @@ describe('CommentLikeRepositoryPostgres', () => {
   });
 
   describe('toggleCommentLike function', () => {
-    it('should add comment like to database if user has not like the comment', async () => {
+    it('should add a comment like to database when user has not liked the comment', async () => {
       // Arrange
       const commentLikeRepositoryPostgres = new CommentLikeRepositoryPostgres(
         pool
@@ -49,7 +49,23 @@ describe('CommentLikeRepositoryPostgres', () => {
       expect(commentLikes).toHaveLength(1);
     });
 
-    it('should remove comment like if user has liking the comment', async () => {
+    it('should increase comment like count when a comment is liked', async () => {
+      // Arrange
+      const commentLikeRepositoryPostgres = new CommentLikeRepositoryPostgres(
+        pool
+      );
+
+      // Action
+      await commentLikeRepositoryPostgres.toggleCommentLike(userId, commentId);
+
+      // Assert
+      const likeCount = await CommentLikesTableTestHelper.getCommentLikeCount(
+        commentId
+      );
+      expect(likeCount).toBe(1);
+    });
+
+    it('should remove a comment like from database when user has already liked the comment', async () => {
       // Arrange
       const commentLikeRepositoryPostgres = new CommentLikeRepositoryPostgres(
         pool
@@ -65,6 +81,23 @@ describe('CommentLikeRepositoryPostgres', () => {
         commentId
       );
       expect(commentLikes).toHaveLength(0);
+    });
+
+    it('should decrease comment like count when cancel liked a comment', async () => {
+      // Arrange
+      const commentLikeRepositoryPostgres = new CommentLikeRepositoryPostgres(
+        pool
+      );
+      await CommentLikesTableTestHelper.addCommentLike(userId, commentId);
+
+      // Action
+      await commentLikeRepositoryPostgres.toggleCommentLike(userId, commentId);
+
+      // Assert
+      const likeCount = await CommentLikesTableTestHelper.getCommentLikeCount(
+        commentId
+      );
+      expect(likeCount).toBe(0);
     });
   });
 });

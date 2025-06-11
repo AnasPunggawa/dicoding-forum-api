@@ -68,6 +68,28 @@ class CommentLikesTableTestHelper {
     return rows;
   }
 
+  /**
+   * @param {string} commentId
+   * @returns  {Promise<number>}
+   */
+  static async getCommentLikeCount(commentId) {
+    const query = {
+      text: `
+        SELECT
+          COUNT(user_id) AS "likeCount"
+        FROM
+          comment_likes
+        WHERE
+          comment_id = $1;
+      `,
+      values: [commentId],
+    };
+
+    const { rows } = await pool.query(query);
+
+    return Number(rows[0].likeCount);
+  }
+
   static async cleanTable() {
     await pool.query('TRUNCATE TABLE comment_likes RESTART IDENTITY CASCADE');
   }

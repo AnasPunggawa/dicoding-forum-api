@@ -58,6 +58,7 @@ describe('GetDetailThreadUseCase', () => {
         username: 'johndoe',
         date: new Date().toISOString(),
         content: `a thread comment ${Date.now()}`,
+        likeCount: 1,
         isDeleted: false,
       },
       {
@@ -65,6 +66,7 @@ describe('GetDetailThreadUseCase', () => {
         username: 'johndoe',
         date: new Date(Date.now() - 1000 * 60 * 40).toISOString(),
         content: `a thread comment ${Date.now()}`,
+        likeCount: 0,
         isDeleted: true,
       },
       {
@@ -72,6 +74,7 @@ describe('GetDetailThreadUseCase', () => {
         username: 'johndoe',
         date: new Date(Date.now() - 1000 * 60 * 15).toISOString(),
         content: `a thread comment ${Date.now()}`,
+        likeCount: 2,
         isDeleted: true,
       },
     ];
