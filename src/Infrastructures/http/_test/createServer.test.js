@@ -2,6 +2,12 @@ const process = require('node:process');
 const createServer = require('../createServer');
 
 describe('HTTP server', () => {
+  const originalNodeEnv = process.env.NODE_ENV;
+
+  afterEach(() => {
+    process.env.NODE_ENV = originalNodeEnv;
+  });
+
   it('should use 0.0.0.0 HOST when NODE_ENV is production', async () => {
     // Arrange
     process.env.NODE_ENV = 'production';
@@ -12,6 +18,18 @@ describe('HTTP server', () => {
 
     // Assert
     expect(server.info.host).toEqual('0.0.0.0');
+  });
+
+  it('should use localhost HOST when NODE_ENV is not production', async () => {
+    // Arrange
+    delete process.env.NODE_ENV;
+
+    // Action
+    // @ts-ignore
+    const server = await createServer({});
+
+    // Assert
+    expect(server.info.host).toEqual('localhost');
   });
 
   it('should response 404 when request unregistered route', async () => {
