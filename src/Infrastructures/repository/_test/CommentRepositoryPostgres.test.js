@@ -154,6 +154,7 @@ describe('CommentRepositoryPostgres', () => {
       expect(threadComments[0].date).toBe(commentDate);
       expect(threadComments[0].content).toBeDefined();
       expect(threadComments[0].content).toBe('a new comment');
+      expect(threadComments[0].likeCount).toBe(0);
     });
 
     it('should return array of comments order by date ascending', async () => {

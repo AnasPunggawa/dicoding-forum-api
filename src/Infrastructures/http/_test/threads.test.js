@@ -231,6 +231,11 @@ describe('/threads endpoints', () => {
       expect(responseJson.data.thread.username).toBeDefined();
       expect(responseJson.data.thread.comments).toBeDefined();
       expect(responseJson.data.thread.comments).toHaveLength(2);
+      expect(responseJson.data.thread.comments[0].id).toBeDefined();
+      expect(responseJson.data.thread.comments[0].username).toBeDefined();
+      expect(responseJson.data.thread.comments[0].date).toBeDefined();
+      expect(responseJson.data.thread.comments[0].content).toBeDefined();
+      expect(responseJson.data.thread.comments[0].likeCount).toBeDefined();
     });
 
     it('should response 404 when the thread is not exist', async () => {

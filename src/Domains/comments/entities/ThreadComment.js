@@ -15,6 +15,7 @@ class ThreadComment {
     this.content = payload.isDeleted
       ? '**komentar telah dihapus**'
       : payload.content;
+    this.likeCount = payload.likeCount;
   }
 
   /**
@@ -22,7 +23,14 @@ class ThreadComment {
    * @throws {Error}
    */
   #verifyPayload(payload) {
-    const requiredProps = ['id', 'username', 'date', 'content', 'isDeleted'];
+    const requiredProps = [
+      'id',
+      'username',
+      'date',
+      'content',
+      'likeCount',
+      'isDeleted',
+    ];
 
     for (const prop of requiredProps) {
       if (
@@ -38,6 +46,7 @@ class ThreadComment {
       typeof payload.username !== 'string' ||
       typeof payload.date !== 'string' ||
       typeof payload.content !== 'string' ||
+      typeof payload.likeCount !== 'number' ||
       typeof payload.isDeleted !== 'boolean'
     ) {
       throw new Error('THREAD_COMMENT.NOT_MEET_DATA_TYPE_SPECIFICATION');
