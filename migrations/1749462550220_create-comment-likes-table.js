@@ -10,19 +10,19 @@ exports.shorthands = undefined;
  */
 exports.up = (pgm) => {
   pgm.createTable('comment_likes', {
-    comment_id: {
-      type: 'VARCHAR(50)',
-      notNull: true,
-      referencesConstraintName: 'comment_likes_comment_id_fkey',
-      references: 'comments(id)',
-      onUpdate: 'CASCADE',
-      onDelete: 'CASCADE',
-    },
     user_id: {
       type: 'VARCHAR(50)',
       notNull: true,
       referencesConstraintName: 'comment_likes_user_id_fkey',
       references: 'users(id)',
+      onUpdate: 'CASCADE',
+      onDelete: 'CASCADE',
+    },
+    comment_id: {
+      type: 'VARCHAR(50)',
+      notNull: true,
+      referencesConstraintName: 'comment_likes_comment_id_fkey',
+      references: 'comments(id)',
       onUpdate: 'CASCADE',
       onDelete: 'CASCADE',
     },
